@@ -10,6 +10,8 @@ import Animated, { Extrapolation, interpolate, useAnimatedScrollHandler, useAnim
 import { FlatList } from "react-native-reanimated/lib/typescript/Animated";
 import styled from "styled-components/native";
 
+const { width } = Dimensions.get("window");
+
 const Container = styled.View`
     flex: 1;
     background-color: ${COLORS.LIGHTGREEN};
@@ -85,8 +87,6 @@ const SLIDES: SlideItem[] = [
         />
     }
 ];
-
-const { width } = Dimensions.get("window");
 
 export default function Onboarding() {
     const flatListRef = useRef<FlatList>(null);
