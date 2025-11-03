@@ -5,7 +5,7 @@ import { OnBoardingItem } from "@/components/OnBoardingItem";
 import { COLORS } from "@/constants/Colors";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Dimensions } from "react-native";
 import Animated, { Extrapolation, interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, type SharedValue } from "react-native-reanimated";
 import { FlatList } from "react-native-reanimated/lib/typescript/Animated";
@@ -93,6 +93,10 @@ export default function Onboarding() {
     const router = useRouter();
     const flatListRef = useRef<FlatList>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        router.prefetch("/(authentication)");
+    }, [router]);
 
     const renderItem = ({ item }: { item: SlideItem }) => {
         return (
