@@ -95,7 +95,7 @@ export default function Onboarding() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        router.prefetch("/(authentication)");
+        router.prefetch("/authentication");
     }, [router]);
 
     const renderItem = ({ item }: { item: SlideItem }) => {
@@ -120,12 +120,12 @@ export default function Onboarding() {
             flatListRef.current?.scrollToIndex({ index: nextIndex, animated: true });
             setCurrentIndex(nextIndex);
         } else {
-            router.replace("/(authentication)");
+            router.replace("/authentication");
         }
     };
 
     const handleSkip = () => {
-        router.replace("/(authentication)");
+        router.replace("/authentication");
     };
 
     return (

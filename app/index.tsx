@@ -7,7 +7,7 @@ export default function AppIndex() {
 
     useEffect(() => {
         const routeFinding = async () => {
-            const nextRoute = "/(onboarding)";
+            const nextRoute = "/onboarding";
 
             setTimeout(() => router.replace(nextRoute), 1000);
         };
