@@ -120,12 +120,12 @@ export default function Onboarding() {
             flatListRef.current?.scrollToIndex({ index: nextIndex, animated: true });
             setCurrentIndex(nextIndex);
         } else {
-            router.replace("/authentication");
+            router.replace("/home");
         }
     };
 
     const handleSkip = () => {
-        router.replace("/authentication");
+        router.replace("/home");
     };
 
     return (
