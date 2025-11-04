@@ -9,7 +9,7 @@ import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated"
 import styled from "styled-components/native";
 
 const Container = styled.View`
-    background-color: ${COLORS.WHITE};
+    background-color: ${COLORS.PUREWHITE};
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -21,7 +21,7 @@ const TabButton = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
     row-gap: 5px;
-    width: 80px;
+    width: 100px;
     font-family: "Nunito-Regular";
     font-size: 14px;
 `;
@@ -33,7 +33,7 @@ const CreateButton = styled.TouchableOpacity`
     border-radius: 42px;
     width: 42px;
     height: 42px;
-    margin-bottom: 5%;
+    margin-bottom: 4%;
 `;
 
 type TabBarItemProps = {
@@ -56,7 +56,7 @@ function TabBarItem({ route, isFocused, options, navigation } : TabBarItemProps)
     }
 
     const animatedLabelStyle = useAnimatedStyle(() => ({
-        opacity: withTiming(isFocused ? 1 : 0, { duration: 200 }),
+        opacity: withTiming(isFocused ? 1 : 0, { duration: 500 }),
         transform: [{ translateY: withTiming(isFocused ? 0 : 5) }],
     }));
 

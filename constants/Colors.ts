@@ -14,5 +14,6 @@ export const COLORS = {
 
     ERROR: "#930009",
     GRAY: "#BCBEC0",
-    WHITE: "rgba(255, 255, 255, 0.6)"
+    WHITE: "rgba(255, 255, 255, 0.6)",
+    PUREWHITE: "#FFFFFF"
 }
