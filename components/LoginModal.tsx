@@ -1,5 +1,5 @@
 import { COLORS } from "@/constants/Colors";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import { LayoutModal } from "./LayoutModal";
 import { InputField } from "./InputField";
@@ -18,7 +18,7 @@ const SignupButton = styled.TouchableOpacity`
 `;
 
 const SignupButtonText = styled.Text`
-    color: #02954F;
+    color: ${COLORS.DARKGREEN};
     font-weight: 600;
 `;
 
@@ -29,14 +29,14 @@ const FormContainer = styled.View`
 `;
 
 const Button = styled.TouchableOpacity`
-  background-color: #02954F;
+  background-color: ${COLORS.DARKGREEN};
   border-radius: 8px;
   padding: 16px 10px;
   align-items: center;
 `;
 
 const ButtonText = styled.Text`
-  color: #FFE06E;
+  color: ${COLORS.YELLOW};
   font-size: 16px;
   font-weight: 500;
 `;
@@ -45,16 +45,40 @@ type LoginModalProps = {
     onSignupPress: () => void;
 }
 
-export function LoginModal ({ onSignupPress } : LoginModalProps) {
+interface LoginForm {
+  email: string;
+  password: string;
+}
 
+export function LoginModal ({ onSignupPress } : LoginModalProps) {
+    const [form, setForm] = useState<LoginForm>({
+        email: '',
+        password: '',
+    });
+
+    const handleChange = (key: keyof LoginForm, value: string) => {
+        setForm((prev) => ({ ...prev, [key]: value }));
+    };
+
+    const handleLogin = () => {
+        console.log(form);
+    };
     return (
         <LayoutModal modalTitle={"Đăng nhập"} backgroundColor={COLORS.WHITE}>
-
-
             <FormContainer>
-                <InputField placeholder="Email:" keyboardType="email-address"/>
-                <InputField placeholder="Mật khẩu:" secureText={true} />
-                <Button>
+                <InputField 
+                    placeholder="Email:" 
+                    keyboardType="email-address"
+                    value={form.email}
+                    onChangeText={(text) => handleChange('email', text)}/>
+
+                <InputField 
+                    placeholder="Mật khẩu:" 
+                    value={form.password}
+                    onChangeText={(text) => handleChange('password', text)}
+                    secureText={true} />
+
+                <Button onPress={handleLogin}>
                     <ButtonText>Đăng nhập</ButtonText>
                 </Button>
                     <ButtonContainer>

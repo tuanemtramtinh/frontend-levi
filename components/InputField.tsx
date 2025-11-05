@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { COLORS } from "@/constants/Colors";
 import styled from "styled-components/native";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 type InputFieldProps = {
   placeholder: string;
   value?: string;
+  onChangeText?: (text: string) => void;
   secureText?: boolean;
   keyboardType?: "default" | "email-address" | "numeric";
 };
@@ -31,6 +33,7 @@ const IconContainer = styled.View`
 export function InputField({
   placeholder,
   value,
+  onChangeText,
   secureText,
   keyboardType = "default",
 }: InputFieldProps) {
@@ -40,14 +43,15 @@ export function InputField({
       <StyledInput
         placeholder={placeholder}
         value={value}
+        onChangeText={onChangeText}
         secureTextEntry={!!secureText}
-        placeholderTextColor="#BCBEC0"
+        placeholderTextColor={COLORS.GRAY}
         keyboardType={keyboardType}
         hasIcon={!!secureText}
       />
       {secureText && (
             <IconContainer>
-                <MaterialIcons name="lock" size={18} color="#BCBEC0" />
+                <MaterialIcons name="lock" size={18} color={COLORS.GRAY} />
             </IconContainer>
         )}
       

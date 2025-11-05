@@ -10,7 +10,7 @@ export const COLORS = {
 
     DARKBLUE: "#0d5bb7",
     DARKYELLOW: "#fdd74e",
-    DARKGREEN: "#03954f",
+    DARKGREEN: "#02954f",
 
     ERROR: "#930009",
     GRAY: "#BCBEC0",
