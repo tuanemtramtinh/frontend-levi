@@ -32,6 +32,12 @@ const MytourTextContainer = styled.View`
 `;
 
 const MyTourText = styled.Text`
+    font-family: "Nunito-SemiBold";
+    font-size: 16px;
+    color: ${COLORS.DARKGREEN};
+`;
+
+const SeeAllTour = styled.Text`
     font-family: "Nunito-Regular";
     font-size: 16px;
     color: ${COLORS.DARKGREEN};
@@ -105,7 +111,7 @@ export default function Home() {
 
                 <MytourTextContainer>
                     <MyTourText>Tour của tôi</MyTourText>
-                    <MyTourText>Xem tất cả</MyTourText>
+                    <SeeAllTour>Xem tất cả</SeeAllTour>
                 </MytourTextContainer>
 
                 <Animated.FlatList
