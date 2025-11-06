@@ -9,8 +9,8 @@ export const COLORS = {
     GREEN: "#a1d599",
 
     DARKBLUE: "#0d5bb7",
-    DARKYELLOW: "#FFE06E",
-    DARKGREEN: "#03954f",
+    DARKYELLOW: "#fdd74e",
+    DARKGREEN: "#02954f",
 
     ERROR: "#930009",
     GRAY: "#BCBEC0",
