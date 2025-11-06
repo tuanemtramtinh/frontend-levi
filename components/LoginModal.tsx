@@ -1,4 +1,5 @@
 import { COLORS } from "@/constants/Colors";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import { InputField } from "./InputField";
@@ -51,6 +52,7 @@ interface LoginForm {
 }
 
 export function LoginModal ({ onSignupPress } : LoginModalProps) {
+    const router = useRouter();
     const [form, setForm] = useState<LoginForm>({
         email: '',
         password: '',
@@ -61,7 +63,7 @@ export function LoginModal ({ onSignupPress } : LoginModalProps) {
     };
 
     const handleLogin = () => {
-        console.log(form);
+        router.replace("/home");
     };
 
     return (

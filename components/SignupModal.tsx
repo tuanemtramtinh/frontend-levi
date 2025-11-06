@@ -1,4 +1,5 @@
 import { COLORS } from "@/constants/Colors";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import { InputField } from "./InputField";
@@ -51,6 +52,7 @@ interface SignupForm {
 }
 
 export function SignupModal ({ onLoginPress } : SignupModalProps) {
+	const router = useRouter();
 	const [form, setForm] = useState<SignupForm>({
 		fullName: '',
 		email: '',
@@ -62,7 +64,7 @@ export function SignupModal ({ onLoginPress } : SignupModalProps) {
 	};
 
 	const handleSignup = () => {
-		console.log(form);
+		router.replace("/home");
 	};
 
     return (

@@ -11,7 +11,7 @@ export default function AppIndex() {
             const hasOnboarded = await AsyncStorage.getItem("hasOnboarded");
 
             if (hasOnboarded === "true") {
-                setTimeout(() => router.replace("/home"), 500);
+                setTimeout(() => router.replace("/authentication"), 500);
             } else {
                 setTimeout(() => router.replace("/onboarding"), 500);
             }

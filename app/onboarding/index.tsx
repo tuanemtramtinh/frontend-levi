@@ -122,13 +122,13 @@ export default function Onboarding() {
             setCurrentIndex(nextIndex);
         } else {
             await AsyncStorage.setItem("hasOnboarded", "true");
-            router.replace("/home");
+            router.replace("/authentication");
         }
     };
 
     const handleSkip = async () => {
         await AsyncStorage.setItem("hasOnboarded", "true");
-        router.replace("/home");
+        router.replace("/authentication");
     };
 
     return (

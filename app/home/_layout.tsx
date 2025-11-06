@@ -3,6 +3,7 @@ import { HomeIcon } from "@/assets/Icons/HomeIcon";
 import { PlusIcon } from "@/assets/Icons/PlusIcon";
 import { COLORS } from "@/constants/Colors";
 import { Tabs } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
 const CreateButton = styled.TouchableOpacity`
@@ -17,50 +18,52 @@ const CreateButton = styled.TouchableOpacity`
 
 export default function HomeLayout() {
     return (
-        <Tabs 
-            screenOptions={{ 
-                headerShown: false,
-                tabBarActiveTintColor: COLORS.DARKGREEN,
-                tabBarInactiveTintColor: COLORS.GRAY,
-                tabBarStyle: {
-                    height: 70,
-                    paddingTop: 10,
-                    backgroundColor: COLORS.PUREWHITE
-                },
-            }}
-        >
-            <Tabs.Screen 
-                name="index"
-                options={{
-                    title: 'Nhà',
-                    tabBarIcon: ({ focused, color, size }) => (
-                        <HomeIcon color={focused ? COLORS.DARKGREEN : COLORS.GRAY} />
-                    ),
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.LIGHTGREEN }} edges={["top"]}>
+            <Tabs 
+                screenOptions={{ 
+                    headerShown: false,
+                    tabBarActiveTintColor: COLORS.DARKGREEN,
+                    tabBarInactiveTintColor: COLORS.GRAY,
+                    tabBarStyle: {
+                        height: 70,
+                        paddingTop: 10,
+                        backgroundColor: COLORS.PUREWHITE
+                    },
                 }}
-            />
-            <Tabs.Screen
-                name="create"
-                options={{
-                    tabBarLabel: () => null,
-                    tabBarIcon: () => (
-                        <CreateButton>
-                            <PlusIcon/>
-                        </CreateButton>
-                    )
-                }}
-                listeners={{
-                    tabPress: (e) => {e.preventDefault();}
-                }}
-            />
-            <Tabs.Screen 
-                name="tours"
-                options={{
-                    title: 'Tour của tôi',
-                    tabBarIcon: ({ focused, color, size }) => (
-                        <CompassIcon color={focused ? COLORS.DARKGREEN : COLORS.GRAY} />
-                    ),
-                }}
-            />
-        </Tabs>
+            >
+                <Tabs.Screen 
+                    name="index"
+                    options={{
+                        title: 'Nhà',
+                        tabBarIcon: ({ focused, color, size }) => (
+                            <HomeIcon color={focused ? COLORS.DARKGREEN : COLORS.GRAY} />
+                        ),
+                    }}
+                />
+                <Tabs.Screen
+                    name="create"
+                    options={{
+                        tabBarLabel: () => null,
+                        tabBarIcon: () => (
+                            <CreateButton>
+                                <PlusIcon/>
+                            </CreateButton>
+                        )
+                    }}
+                    listeners={{
+                        tabPress: (e) => {e.preventDefault();}
+                    }}
+                />
+                <Tabs.Screen 
+                    name="tours"
+                    options={{
+                        title: 'Tour của tôi',
+                        tabBarIcon: ({ focused, color, size }) => (
+                            <CompassIcon color={focused ? COLORS.DARKGREEN : COLORS.GRAY} />
+                        ),
+                    }}
+                />
+            </Tabs>
+        </SafeAreaView>
     )
 }

@@ -15,7 +15,7 @@ const Container = styled.View`
 `;
 
 const MainContainer = styled.View`
-    padding-top: 35%;
+    padding-top: 15%;
 `;
 
 const Title = styled.Text`
