@@ -5,6 +5,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface UserState {
     username: string | null;
     userId: string | null;
+    token: string | null;
     loading: boolean;
     error: string | null;
 };
@@ -12,6 +13,7 @@ interface UserState {
 const initialState: UserState = {
     username: null,
     userId: null,
+    token: null,
     loading: false,
     error: null,
 };
@@ -20,13 +22,15 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setUser: (state, action: PayloadAction<{ username: string; userId: string }>) => {
+        setUser: (state, action: PayloadAction<{ username: string; userId: string; token: string }>) => {
             state.username = action.payload.username;
             state.userId = action.payload.userId;
+            state.token = action.payload.token;
         },
         clearUser: (state) => {
             state.username = null;
             state.userId = null;
+            state.token = null;
         },
     },
     extraReducers: (builder) => {
@@ -35,15 +39,20 @@ const userSlice = createSlice({
             state.loading = true;
             state.error = null;
         })
-        .addCase(login.fulfilled, (state, action: PayloadAction<{ username: string; userId: string }>) => {
+        .addCase(login.fulfilled, (state, action: PayloadAction<{ username: string; userId: string; token: string }>) => {
             state.loading = false;
             state.username = action.payload.username;
             state.userId = action.payload.userId;
+            state.token = action.payload.token;
         })
         .addCase(login.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload as string;
-        });
+            if (action.payload as string === "Invalid login credentials") {
+                state.error = "Sai thông tin đăng nhập";
+            } else {
+                state.error = action.payload as string;
+            }
+        })
     }
 });
 
@@ -59,6 +68,7 @@ export const login = createAsyncThunk(
             return {
                 username: data.user.fullName,
                 userId: data.user.id,
+                token: data.token
             }
         } catch (error: any) {
             if (error.response) {

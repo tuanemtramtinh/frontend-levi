@@ -16,5 +16,6 @@ export const COLORS = {
     GRAY: "#BCBEC0",
     PUREGRAY: "#808080",
     WHITE: "rgba(255, 255, 255, 0.6)",
-    PUREWHITE: "#FFFFFF"
+    PUREWHITE: "#FFFFFF",
+    RED: "red"
 }
