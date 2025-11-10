@@ -1,8 +1,10 @@
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { store } from "@/redux/store";
 import { Asset } from "expo-asset";
 import { useFonts } from "expo-font";
 import { Slot } from "expo-router";
 import { useEffect, useState } from "react";
+import { Provider } from "react-redux";
 
 export default function RootLayout() {
 	const [loaded] = useFonts({
@@ -29,5 +31,9 @@ export default function RootLayout() {
 
 	if (!loaded || !assetsLoaded) return <LoadingScreen />;
 
-	return <Slot/>;
+	return (
+		<Provider store={store}>
+			<Slot/>
+		</Provider>
+	)
 }

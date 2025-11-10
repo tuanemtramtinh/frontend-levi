@@ -1,6 +1,9 @@
 import { COLORS } from "@/constants/Colors";
+import { AppDispatch, RootState } from "@/redux/store";
+import { login } from "@/redux/userSlice";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { InputField } from "./InputField";
 import { LayoutModal } from "./LayoutModal";
@@ -53,17 +56,16 @@ interface LoginForm {
 
 export function LoginModal ({ onSignupPress } : LoginModalProps) {
     const router = useRouter();
-    const [form, setForm] = useState<LoginForm>({
-        email: '',
-        password: '',
-    });
+    const [form, setForm] = useState<LoginForm>({ email: '', password: '' });
+    const dispatch = useDispatch<AppDispatch>();
+    const loading = useSelector((state: RootState) => state.user.loading);
 
     const handleChange = (key: keyof LoginForm, value: string) => {
         setForm((prev) => ({ ...prev, [key]: value }));
     };
 
     const handleLogin = () => {
-        router.replace("/home");
+        dispatch(login(form));
     };
 
     return (
@@ -85,8 +87,10 @@ export function LoginModal ({ onSignupPress } : LoginModalProps) {
                     onChangeText={(text) => handleChange('password', text)}
                 />
 
-                <Button onPress={handleLogin}>
-                    <ButtonText>Đăng nhập</ButtonText>
+                <Button style={{ opacity: loading ? 0.5 : 1 }} disabled={loading} onPress={handleLogin}>
+                    <ButtonText>
+                        {loading ? "Đang đăng nhập..." : "Đăng nhập"}
+                    </ButtonText>
                 </Button>
 
                 <ButtonContainer>
