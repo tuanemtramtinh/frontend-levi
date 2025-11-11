@@ -68,8 +68,8 @@ const userSlice = createSlice({
         })
         .addCase(signup.rejected, (state, action) => {
             state.loading = false;
-            if (action.payload as string === "Invalid login credentials") {
-                state.error = "Sai thông tin đăng nhập";
+            if (action.payload as string === "User already registered") {
+                state.error = "Tài khoản này đã tồn tại";
             } else {
                 state.error = action.payload as string;
             }
